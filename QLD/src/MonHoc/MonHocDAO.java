@@ -30,12 +30,12 @@ public class MonHocDAO implements IMonHocDAO {
                 list = new ArrayList<>();
                 while (rs.next()) {
                     MonHoc mh = new MonHoc();
-                    mh.setMamh(rs.getString(1));
-                    mh.setTenmh(rs.getString(2));
-                    mh.setSotrinh(rs.getInt(3));
-                    mh.setHinhthucthi(rs.getString(4));
-                    mh.setHocky(rs.getInt(5));
-                    mh.setPhonghoc(rs.getString(6));
+                    mh.setMamh(rs.getString("mamh"));
+                    mh.setTenmh(rs.getString("tenmonhoc"));
+                    mh.setSotrinh(rs.getInt("sotrinh"));
+                    mh.setHinhthucthi(rs.getString("hinhthucthi"));
+                    mh.setHocky(rs.getInt("hocky"));
+                    mh.setPhonghoc(rs.getString("phonghoc"));
 
                     list.add(mh);
                 }
@@ -56,18 +56,18 @@ public class MonHocDAO implements IMonHocDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select *from tblMonHoc where fldMaMH =?");
+                ps = DBConnect.cnn.prepareStatement("select *from tblMonHoc where mamh =?");
                 ps.setString(1, maMH);
                 rs = ps.executeQuery();
                 list = new ArrayList<>();
                 while (rs.next()) {
                     MonHoc mh = new MonHoc();
-                    mh.setMamh(rs.getString(1));
-                    mh.setTenmh(rs.getString(2));
-                    mh.setSotrinh(rs.getInt(3));
-                    mh.setHinhthucthi(rs.getString(4));
-                    mh.setHocky(rs.getInt(5));
-                    mh.setPhonghoc(rs.getString(6));
+                    mh.setMamh(rs.getString("mamh"));
+                    mh.setTenmh(rs.getString("tenmonhoc"));
+                    mh.setSotrinh(rs.getInt("sotrinh"));
+                    mh.setHinhthucthi(rs.getString("hinhthucthi"));
+                    mh.setHocky(rs.getInt("hocky"));
+                    mh.setPhonghoc(rs.getString("phonghoc"));
 
                     list.add(mh);
                 }
@@ -85,7 +85,7 @@ public class MonHocDAO implements IMonHocDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("insert into tblMonHoc(fldMaMH, fldTenMH,fldSoTrinh, fldHinhThucThi,fldHocKy,fldPhongHoc) values (?,?,?,?,?,?)");
+                ps = DBConnect.cnn.prepareStatement("insert into tblMonHoc(mamh, tenmonhoc,sotrinh, hinhthucthi,hocky,phonghoc) values (?,?,?,?,?,?)");
                 ps.setString(1, mh.getMamh());
                 ps.setString(2, mh.getTenmh());
                 ps.setInt(3, mh.getSotrinh());
@@ -112,7 +112,7 @@ public class MonHocDAO implements IMonHocDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("update tblMonHoc set fldTenMH=?,fldSoTrinh=?, fldHinhThucThi =?,fldHocKy =?,fldPhongHoc =? where fldMaMH =?");
+                ps = DBConnect.cnn.prepareStatement("update tblMonHoc set tenmonhoc=?,sotrinh=?, hinhthucthi =?,hocky =?,phonghoc =? where mamh =?");
 
                 ps.setString(1, mh.getTenmh());
                 ps.setInt(2, mh.getSotrinh());
@@ -137,7 +137,7 @@ public class MonHocDAO implements IMonHocDAO {
     public void delMonHoc(String MonHocID) throws SQLException, ClassNotFoundException {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
-            ps = DBConnect.cnn.prepareStatement("delete from tblMonHoc where fldMaMH= ?");
+            ps = DBConnect.cnn.prepareStatement("delete from tblMonHoc where mamh= ?");
             ps.setString(1, MonHocID);
             ps.executeUpdate();
             DBConnect.close();
@@ -152,7 +152,7 @@ public class MonHocDAO implements IMonHocDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                psCheck = DBConnect.cnn.prepareStatement("select *from tblMonHoc where fldMaMH=?");
+                psCheck = DBConnect.cnn.prepareStatement("select *from tblMonHoc where mamh=?");
                psCheck.setString(1, mamh);
                 rs = psCheck.executeQuery();
                     list = new ArrayList<MonHoc>();

@@ -31,12 +31,12 @@ public class BangDiemDAO implements IBangDiemDAO {
                 list = new ArrayList<BangDiem>();
                 while (rs.next()) {
                     BangDiem bd = new BangDiem();
-                    bd.setMasv(rs.getString(1));
-                    bd.setMamh(rs.getString(2));
-                    bd.setLanthi(rs.getInt(3));
-                    bd.setHeso(rs.getInt(4));
-                    bd.setDiem(rs.getFloat(5));
-                    bd.setTrangthai(rs.getBoolean(6));
+                    bd.setMasv(rs.getString("masv"));
+                    bd.setMamh(rs.getString("mamh"));
+                    bd.setLanthi(rs.getInt("lanthi"));
+                    bd.setHeso(rs.getInt("heso"));
+                    bd.setDiem(rs.getFloat("diem"));
+                    bd.setTrangthai(rs.getBoolean("trangthai"));
 
                     list.add(bd);
                 }
@@ -56,18 +56,18 @@ public class BangDiemDAO implements IBangDiemDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select * from tblDiem where fldMaSV = ?");
+                ps = DBConnect.cnn.prepareStatement("select * from tblDiem where masv = ?");
                 ps.setString(1, masv);
                 rs = ps.executeQuery();
                 list = new ArrayList<>();
                 while (rs.next()) {
                     BangDiem bd = new BangDiem();
-                    bd.setMasv(rs.getString(1));
-                    bd.setMamh(rs.getString(2));
-                    bd.setLanthi(rs.getInt(3));
-                    bd.setHeso(rs.getInt(4));
-                    bd.setDiem(rs.getFloat(5));
-                    bd.setTrangthai(rs.getBoolean(6));
+                    bd.setMasv(rs.getString("masv"));
+                    bd.setMamh(rs.getString("mamh"));
+                    bd.setLanthi(rs.getInt("lanthi"));
+                    bd.setHeso(rs.getInt("heso"));
+                    bd.setDiem(rs.getFloat("diem"));
+                    bd.setTrangthai(rs.getBoolean("trangthai"));
 
                     list.add(bd);
                 }
@@ -87,18 +87,18 @@ public class BangDiemDAO implements IBangDiemDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select * from tblDiem where fldMaMH = ?");
+                ps = DBConnect.cnn.prepareStatement("select * from tblDiem where mamh = ?");
                 ps.setString(1, mamh);
                 rs = ps.executeQuery();
                 list = new ArrayList<>();
                 while (rs.next()) {
-                    BangDiem bd = new BangDiem();
-                    bd.setMasv(rs.getString(1));
-                    bd.setMamh(rs.getString(2));
-                    bd.setLanthi(rs.getInt(3));
-                    bd.setHeso(rs.getInt(4));
-                    bd.setDiem(rs.getFloat(5));
-                    bd.setTrangthai(rs.getBoolean(6));
+                    BangDiem bd = new BangDiem();   
+                    bd.setMasv(rs.getString("masv"));
+                    bd.setMamh(rs.getString("mamh"));
+                    bd.setLanthi(rs.getInt("lanthi"));
+                    bd.setHeso(rs.getInt("heso"));
+                    bd.setDiem(rs.getFloat("diem"));
+                    bd.setTrangthai(rs.getBoolean("trangthai"));
 
                     list.add(bd);
                 }
@@ -116,7 +116,7 @@ public class BangDiemDAO implements IBangDiemDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("insert into tblDiem (fldMaSV,fldMaMH,fldLanThi,fldHeSo,fldDiem,fldTrangThai) values (?,?,?,?,?,?)");
+                ps = DBConnect.cnn.prepareStatement("insert into tblDiem (masv,mamh,lanthi,heso,diem,trangthai) values (?,?,?,?,?,?)");
                 ps.setString(1, bd.getMasv());
                 ps.setString(2, bd.getMamh());
                 ps.setInt(3, bd.getLanthi());
@@ -141,7 +141,7 @@ public class BangDiemDAO implements IBangDiemDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("update tblDiem set fldHeSo =?,fldDiem = ?,fldTrangThai=? where fldMaSV =? and fldMaMH =? and fldLanThi=?");
+                ps = DBConnect.cnn.prepareStatement("update tblDiem set heso =?,diem = ?,trangthai=? where masv =? and mamh =? and lanthi=?");
 
                 ps.setInt(1, bd.getHeso());
                 ps.setFloat(2, bd.getDiem());
@@ -165,7 +165,7 @@ public class BangDiemDAO implements IBangDiemDAO {
     public void delBangDiem(String MaSV, String MaMH, int LanThi) throws SQLException, ClassNotFoundException {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
-            ps = DBConnect.cnn.prepareStatement("delete from tblDiem where fldMaSV =? and fldMaMH =? and fldLanThi =?");
+            ps = DBConnect.cnn.prepareStatement("delete from tblDiem where masv =? and mamh =? and lanthi =?");
             ps.setString(1, MaSV);
             ps.setString(2, MaMH);
             ps.setInt(3, LanThi);
@@ -181,7 +181,7 @@ public class BangDiemDAO implements IBangDiemDAO {
         boolean result = true;
         if (DBConnect.open()) {
             try {
-                psCheck = DBConnect.cnn.prepareStatement("select * from tblDiem where fldMaSV =? and fldMaMH =? and fldLanThi =?");
+                psCheck = DBConnect.cnn.prepareStatement("select * from tblDiem where masv =? and mamh =? and lanthi =?");
                 psCheck.setString(1, masv);
                 psCheck.setString(2, mamh);
                 psCheck.setInt(3, lanthi);
@@ -203,14 +203,14 @@ public class BangDiemDAO implements IBangDiemDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select DISTINCT fldmamh from tblDiem where fldtrangthai is not null and fldmasv=?");
+                ps = DBConnect.cnn.prepareStatement("select DISTINCT mamh from tblDiem where trangthai is not null and masv=?");
                 ps.setString(1, masv);
                 rs = ps.executeQuery();
                 list = new ArrayList<BangDiem>();
                 while (rs.next()) {
                     BangDiem bd = new BangDiem();
-                    bd.setMasv(rs.getString(1));
-                    bd.setMamh(rs.getString("fldmamh"));
+//                    bd.setMasv(rs.getString("masv"));
+                    bd.setMamh(rs.getString("mamh"));
 //                    bd.setLanthi(rs.getInt("fldLanThi"));
 //                    bd.setHeso(rs.getInt("fldHeSo"));
 //                    bd.setDiem(rs.getFloat("fldDiem"));
@@ -232,7 +232,7 @@ public class BangDiemDAO implements IBangDiemDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select fldlanthi, fldheso, flddiem from tblDiem where fldmamh =? and fldmasv=?");
+                ps = DBConnect.cnn.prepareStatement("select lanthi, heso, diem from tblDiem where mamh =? and masv=?");
                 ps.setString(1, maMon);
                 ps.setString(2, masv);
                 rs = ps.executeQuery();
@@ -241,9 +241,9 @@ public class BangDiemDAO implements IBangDiemDAO {
                     BangDiem bd = new BangDiem();
                     //bd.setMasv(rs.getString(1));
 //                    bd.setMamh(rs.getString("fldmamh"));
-                    bd.setLanthi(rs.getInt("fldLanThi"));
-                    bd.setHeso(rs.getInt("fldHeSo"));
-                    bd.setDiem(rs.getFloat("fldDiem"));
+                    bd.setLanthi(rs.getInt("lanthi"));
+                    bd.setHeso(rs.getInt("heso"));
+                    bd.setDiem(rs.getFloat("diem"));
                     list.add(bd);
                 }
             } catch (SQLException ex) {
@@ -257,12 +257,12 @@ public class BangDiemDAO implements IBangDiemDAO {
 
     @Override
     public ArrayList<BangDiem> findMasv() {
-          ArrayList<BangDiem> list = null;
+        ArrayList<BangDiem> list = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select DISTINCT fldmasv from tblDiem where  fldtrangthai is not null");
+                ps = DBConnect.cnn.prepareStatement("select DISTINCT masv from tblDiem where  trangthai is not null");
                 rs = ps.executeQuery();
                 list = new ArrayList<BangDiem>();
                 while (rs.next()) {
@@ -278,7 +278,11 @@ public class BangDiemDAO implements IBangDiemDAO {
         }
         return list;
     }
-    public static void main(String[] args) {
-        System.out.println(new BangDiemDAO().findMaMH("B103104111").get(0).getMasv());
-    }
+//    public static void main(String[] args) {
+//        ArrayList<BangDiem> list = null;
+//        list = new BangDiemDAO().findMaMH("20144739");
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getMamh());
+//        }
+//    }
 }

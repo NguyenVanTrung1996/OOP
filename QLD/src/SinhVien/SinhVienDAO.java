@@ -35,16 +35,14 @@ public class SinhVienDAO implements ISinhVienDAO {
                 list = new ArrayList<>();
                 while (rs.next()) {
                     SinhVien sv = new SinhVien();
-                    sv.setMasv(rs.getString(1));
-                    sv.setTensv(rs.getString(2));
-                    sv.setMalop(rs.getString(3));
-                    sv.setHedaotao(rs.getString(4));
-                    sv.setNgaysinh(new Date(rs.getDate(5).getTime()));
-                    sv.setDiachi(rs.getString(6));
-
-                    sv.setGioitinh(rs.getBoolean(7));
-
-                    sv.setSodt(rs.getString(8));
+                    sv.setMasv(rs.getString("masv"));
+                    sv.setTensv(rs.getString("tensv"));
+                    sv.setMalop(rs.getString("malop"));
+                    sv.setDiachi(rs.getString("diachi"));
+                    sv.setHedaotao(rs.getString("hedaotao"));
+                    sv.setNgaysinh(new Date(rs.getDate("ngaysinh").getTime()));
+                    sv.setGioitinh(rs.getBoolean("gioitinh"));
+                    sv.setSodt(rs.getString("sodt"));
                     list.add(sv);
                 }
             } catch (SQLException ex) {
@@ -64,20 +62,20 @@ public class SinhVienDAO implements ISinhVienDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select * from tblSinhVien where fldMaLop = ?");
+                ps = DBConnect.cnn.prepareStatement("select * from tblSinhVien where malop = ?");
                 ps.setString(1, maLop);
                 rs = ps.executeQuery();
                 list = new ArrayList<>();
                 while (rs.next()) {
                     SinhVien sv = new SinhVien();
-                    sv.setMasv(rs.getString(1));
-                    sv.setTensv(rs.getString(2));
-                    sv.setMalop(rs.getString(3));
-                    sv.setHedaotao(rs.getString(4));
-                    sv.setNgaysinh(new Date(rs.getDate(5).getTime()));
-                    sv.setDiachi(rs.getString(6));
-                    sv.setGioitinh(rs.getBoolean(7));
-                    sv.setSodt(rs.getString(8));
+                    sv.setMasv(rs.getString("masv"));
+                    sv.setTensv(rs.getString("tensv"));
+                    sv.setMalop(rs.getString("malop"));
+                    sv.setDiachi(rs.getString("diachi"));
+                    sv.setHedaotao(rs.getString("hedaotao"));
+                    sv.setNgaysinh(new Date(rs.getDate("ngaysinh").getTime()));
+                    sv.setGioitinh(rs.getBoolean("gioitinh"));
+                    sv.setSodt(rs.getString("sodt"));
                     list.add(sv);
                 }
 
@@ -99,7 +97,7 @@ public class SinhVienDAO implements ISinhVienDAO {
         if (DBConnect.open()) {
             try {
 
-                ps = DBConnect.cnn.prepareStatement("insert into tblSinhVien(fldMaSV,fldHoTen,fldMaLop,fldHeDaoTao,fldNgaySinh,fldDiaChi,fldGioiTinh,fldSDT) values (?,?,?,?,?,?,?,?)");
+                ps = DBConnect.cnn.prepareStatement("insert into tblSinhVien(masv,tensv,malop,diachi,hedaotao,ngaysinh,gioitinh,sdt) values (?,?,?,?,?,?,?,?)");
                 ps.setNString(1, sv.getMasv());
                 ps.setNString(2, sv.getTensv());
                 ps.setNString(3, sv.getMalop());
@@ -129,7 +127,7 @@ public class SinhVienDAO implements ISinhVienDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("update tblSinhVien set fldHoTen = ?, fldMaLop = ?, fldHeDaoTao = ?, fldNgaySinh = ?, fldDiaChi = ?, fldGioiTinh = ?, fldSDT = ? where fldMaSV = ?");
+                ps = DBConnect.cnn.prepareStatement("update tblSinhVien set tensv = ?, malop = ?, hedaotao = ?, ngaysinh = ?, diachi = ?, gioitinh = ?, sodt = ? where masv = ?");
                 ps.setString(1, sv.getTensv());
                 ps.setString(2, sv.getMalop());
                 ps.setString(3, sv.getHedaotao());
@@ -154,16 +152,11 @@ public class SinhVienDAO implements ISinhVienDAO {
     public void deleteIDSinhVien(String SinhVienID) throws SQLException, ClassNotFoundException {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
-            ps = DBConnect.cnn.prepareStatement("delete from tblSinhVien where fldMaSV= ?");
+            ps = DBConnect.cnn.prepareStatement("delete from tblSinhVien where masv= ?");
             ps.setString(1, SinhVienID);
             ps.executeUpdate();
             DBConnect.close();
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new SinhVienDAO().findByIDLop("CN4").get(0).getMalop());
-
     }
 
     @Override
@@ -173,13 +166,13 @@ public class SinhVienDAO implements ISinhVienDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                psCheck = DBConnect.cnn.prepareStatement("select *from tblSinhVien where fldMaSV=?");
+                psCheck = DBConnect.cnn.prepareStatement("select *from tblSinhVien where masv=?");
                 psCheck.setString(1, masv);
                 rs = psCheck.executeQuery();
                 list = new ArrayList<SinhVien>();
                 while (rs.next()) {
                     SinhVien sinhVien = new SinhVien();
-                    sinhVien.setMasv(rs.getString(1));
+                    sinhVien.setMasv(rs.getString("masv"));
                     list.add(sinhVien);
                 }
             } catch (SQLException ex) {
@@ -190,4 +183,15 @@ public class SinhVienDAO implements ISinhVienDAO {
         }
         return list;
     }
+
+//    public static void main(String[] args) {
+//        ArrayList<SinhVien> list = null;
+//        list = new SinhVienDAO().CheckID("2014473");
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getTensv());
+//        }
+//        SinhVienDAO sv = new SinhVienDAO();
+//        sv.deleteIDSinhVien("20144739");
+//    }
+
 }

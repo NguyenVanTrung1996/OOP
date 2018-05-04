@@ -11,7 +11,7 @@ package LopHoc;
 public class LopHoc {
     private String malop;
     private String tenlop;
-        private String makhoa;
+    private String makhoa;
     private String khoahoc;
 
     public LopHoc() {

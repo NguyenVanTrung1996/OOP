@@ -136,11 +136,11 @@ public class Main extends javax.swing.JFrame {
         jmHelp = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MARK SYSTEM MANAGER -  TRAN VAN TUYEN - MASV: B103104290 - LOP: L10CQCN4 - KHOA CNTT - HOC VIEN CONG NGHE BUU CHINH VIEN THONG");
+        setTitle("QUẢN LÝ SINH VIÊN ĐẠI HỌC BÁCH KHOA HÀ NỘI"); // NOI18N
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -452,7 +452,7 @@ public class Main extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(274, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(327, 327, 327))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -494,6 +494,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 204)));
+        jMenuBar2.setToolTipText("Quản Lý Sinh Viên"); // NOI18N
 
         jmHeThong.setBackground(new java.awt.Color(204, 204, 255));
         jmHeThong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Measure.png"))); // NOI18N
@@ -676,8 +677,8 @@ public class Main extends javax.swing.JFrame {
 
         jtpContent.getAccessibleContext().setAccessibleName("Main");
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-1074)/2, (screenSize.height-634)/2, 1074, 634);
+        setSize(new java.awt.Dimension(1074, 634));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExitActionPerformed

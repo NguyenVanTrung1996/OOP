@@ -30,9 +30,9 @@ public class KhoaDAO implements IKhoaDAO {
                 list = new ArrayList<Khoa>();
                 while (rs.next()) {
                     Khoa k = new Khoa();
-                    k.setMakhoa(rs.getString(1));
-                    k.setTenkhoa(rs.getString(2));
-                    k.setSdt(rs.getString(3));
+                    k.setMakhoa(rs.getString("makhoa"));
+                    k.setTenkhoa(rs.getString("tenkhoa"));
+                    k.setSdt(rs.getString("sdt"));
                     list.add(k);
                 }
             } catch (SQLException ex) {
@@ -73,7 +73,7 @@ public class KhoaDAO implements IKhoaDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("update tblKhoa set fldTenKhoa =?, fldSDT = ? where fldMaKhoa = ?");
+                ps = DBConnect.cnn.prepareStatement("update tblKhoa set tenkhoa =?, sdt = ? where makhoa = ?");
                
                 ps.setString(1, khoa.getTenkhoa());
                 ps.setString(2, khoa.getSdt());
@@ -94,7 +94,7 @@ public class KhoaDAO implements IKhoaDAO {
     public void deleteKhoa(String KhoaID) throws SQLException, ClassNotFoundException{
         PreparedStatement ps = null;
         if (DBConnect.open()) {
-            ps = DBConnect.cnn.prepareStatement("delete from tblKhoa where fldMaKhoa = ?");
+            ps = DBConnect.cnn.prepareStatement("delete from tblKhoa where makhoa = ?");
             ps.setString(1, KhoaID);
             ps.executeUpdate();
             DBConnect.close();
@@ -108,7 +108,7 @@ public class KhoaDAO implements IKhoaDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                psCheck = DBConnect.cnn.prepareStatement("select *from tblKhoa where fldMaKhoa = ?");
+                psCheck = DBConnect.cnn.prepareStatement("select *from tblKhoa where makhoa = ?");
                 psCheck.setString(1, makhoa);
                 rs = psCheck.executeQuery();
                 list = new ArrayList<Khoa>();

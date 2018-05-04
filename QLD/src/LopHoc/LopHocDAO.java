@@ -30,10 +30,10 @@ public class LopHocDAO implements ILopHocDAO {
                 list = new ArrayList<LopHoc>();
                 while (rs.next()) {
                     LopHoc lh = new LopHoc();
-                    lh.setMalop(rs.getString(1));
-                    lh.setTenlop(rs.getString(2));
-                    lh.setMakhoa(rs.getString(3));
-                    lh.setKhoahoc(rs.getString(4));
+                    lh.setMalop(rs.getString("malop"));
+                    lh.setTenlop(rs.getString("tenlop"));
+                    lh.setMakhoa(rs.getString("makhoa"));
+                    lh.setKhoahoc(rs.getString("tenkhoa"));
                     list.add(lh);
                 }
             } catch (SQLException ex) {
@@ -52,16 +52,16 @@ public class LopHocDAO implements ILopHocDAO {
         ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("select * from tblLop where fldMaKhoa = ?");
+                ps = DBConnect.cnn.prepareStatement("select * from tblLop where makhoa = ?");
                ps.setString(1, maKhoa);
                 rs = ps.executeQuery();
                 list = new ArrayList<LopHoc>();
                 while (rs.next()) {
                     LopHoc lh = new LopHoc();
-                    lh.setMalop(rs.getString(1));
-                    lh.setTenlop(rs.getString(2));
-                    lh.setMakhoa(rs.getString(3));
-                    lh.setKhoahoc(rs.getString(4));
+                    lh.setMalop(rs.getString("malop"));
+                    lh.setTenlop(rs.getString("tenlop"));
+                    lh.setMakhoa(rs.getString("makhoa"));
+                    lh.setKhoahoc(rs.getString("tenkhoa"));
                     list.add(lh);
                 }
 
@@ -79,7 +79,7 @@ public class LopHocDAO implements ILopHocDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("insert into tblLop(fldMaLop,fldTenLop,fldMaKhoa,fldKhoaHoc) values(?,?,?,?)");
+                ps = DBConnect.cnn.prepareStatement("insert into tblLop(malop,tenlop,makhoa,tenkhoa) values(?,?,?,?)");
                 ps.setString(1, lh.getMalop());
                 ps.setString(2, lh.getTenlop());
                 ps.setString(3, lh.getMakhoa());
@@ -103,7 +103,7 @@ public class LopHocDAO implements ILopHocDAO {
         PreparedStatement ps = null;
         if (DBConnect.open()) {
             try {
-                ps = DBConnect.cnn.prepareStatement("update tblLop set fldTenLop = ?,fldMaKhoa=?, fldKhoaHoc = ? where fldMaLop = ?");
+                ps = DBConnect.cnn.prepareStatement("update tblLop set tenlop = ?,makhoa=?, khoahoc = ? where malop = ?");
                
                 ps.setString(1, lh.getTenlop());
                 ps.setString(2, lh.getMakhoa());
@@ -125,7 +125,7 @@ public class LopHocDAO implements ILopHocDAO {
     public void deleteLopHoc(String LopID)throws SQLException, ClassNotFoundException{
     PreparedStatement ps = null;
         if (DBConnect.open()) {
-            ps = DBConnect.cnn.prepareStatement("delete from tblLop where fldMaLop= ?");
+            ps = DBConnect.cnn.prepareStatement("delete from tblLop where malop= ?");
             ps.setString(1, LopID);
             ps.executeUpdate();
             DBConnect.close();
@@ -139,7 +139,7 @@ public class LopHocDAO implements ILopHocDAO {
       ResultSet rs = null;
         if (DBConnect.open()) {
             try {
-                psCheck = DBConnect.cnn.prepareStatement("select *from tblLop where fldMaLop");
+                psCheck = DBConnect.cnn.prepareStatement("select *from tblLop where malop");
                 psCheck.setString(1, malop);
                 rs = psCheck.executeQuery();
                 list = new ArrayList<LopHoc>();
@@ -157,5 +157,11 @@ public class LopHocDAO implements ILopHocDAO {
         }
         return list;
     }
-    
+//    public static void main(String[] args) {
+//        ArrayList<LopHoc> list = null;
+//        list = new LopHocDAO().findByIDKhoa("cntt2");
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getTenlop()+ " " + list.get(i).getMakhoa());
+//        }
+//    }
 }

@@ -14,6 +14,7 @@
             </MatteColorBorder>
           </Border>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Sinh Vi&#xea;n" noResource="true"/>
       </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jmHeThong">
@@ -218,7 +219,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="MARK SYSTEM MANAGER -  TRAN VAN TUYEN - MASV: B103104290 - LOP: L10CQCN4 - KHOA CNTT - HOC VIEN CONG NGHE BUU CHINH VIEN THONG"/>
+    <Property name="title" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; SINH VI&#xca;N &#x110;&#x1ea0;I H&#x1ecc;C B&#xc1;CH KHOA H&#xc0; N&#x1ed8;I" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -820,7 +821,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="274" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
                   </Group>

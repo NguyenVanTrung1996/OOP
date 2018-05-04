@@ -183,11 +183,11 @@ public class frmLogin extends javax.swing.JFrame {
         } else if (DBConnect.open()) {
             try {
                 boolean blean = true;
-                ps = DBConnect.cnn.prepareStatement("select fldTenDangNhap,fldMatKhau from tblDangNhap ");
+                ps = DBConnect.cnn.prepareStatement("select masv,matkhau from tblDangNhap ");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    String username = "" + rs.getString("fldTenDangNhap");
-                    String password = "" + rs.getString("fldMatKhau");
+                    String username = "" + rs.getString("masv");
+                    String password = "" + rs.getString("matkhau");
                     if (user.equals(username) && pass.equals(password)) {
                         nameLogin = username;
                         new Main().setVisible(true);
@@ -200,7 +200,6 @@ public class frmLogin extends javax.swing.JFrame {
                     }
 
                 }
-
 
             } catch (SQLException ex) {
                 Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,13 +230,13 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelActionPerformed
 
     private void jbLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbLoginKeyReleased
-        if (evt.getKeyCode()==evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             send();
         }
     }//GEN-LAST:event_jbLoginKeyReleased
 
     private void jbCancelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbCancelKeyReleased
-        if (evt.getKeyCode()==evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             System.exit(0);
         }
     }//GEN-LAST:event_jbCancelKeyReleased
@@ -274,7 +273,7 @@ public class frmLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /*
-         * Create and display the form
+
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

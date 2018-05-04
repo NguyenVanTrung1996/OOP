@@ -18,10 +18,10 @@ import java.util.logging.Logger;
  */
 public class DBConnect {
 
-    public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url = "jdbc:sqlserver://localhost:1433;databaseName=Student";
-    public static String user = "sa";
-    public static String pass = "123456";
+    public static String driver = "com.mysql.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost:3306/QuanLySinhVien";
+    public static String user = "root";
+    public static String pass = "";
     public static Connection cnn;
 
     public static boolean open() {
@@ -69,5 +69,10 @@ public class DBConnect {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
         close(ps);
+    }
+    
+    public static void main(String[] args) {
+        DBConnect db = new DBConnect();
+        System.out.println(db.open());
     }
 }
